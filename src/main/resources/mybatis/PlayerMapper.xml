@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.e419.arma.dao.PlayerDao">
+	<select id="getAll" resultType="com.e419.arma.model.Player">
+		select 
+		steamID,name,lastJoined,model,loadout,overallDamage,selectionsDamages,lastPosition,direction,stance,isIncapacitated,money
+		from 
+		players
+	</select>
+	
+	<select id="find" resultType="com.e419.arma.model.Player">
+		select 
+		steamID,name,lastJoined,model,loadout,overallDamage,selectionsDamages,lastPosition,direction,stance,isIncapacitated,money
+		from 
+		players 
+		where 
+		steamID = #{steamID}
+	</select>
+</mapper>

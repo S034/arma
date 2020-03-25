@@ -1,0 +1,24 @@
+server:
+  tomcat:    uri-encoding: utf-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://217.0.0.1:3316/e419?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=UTC
+    username: root
+    password: 123321
+    initial-size: 10
+    max-idle: 20
+    min-idle: 5
+    max-active: 50
+    log-abandoned: true
+    remove-abandoned: true
+    remove-abandoned-timeout: 180
+    max-wait: 1000
+    test-while-idle: true
+    validation-query: select 1 from player
+    min-evictable-idle-time-millis: 600000
+    time-between-eviction-runs-millis: 300000
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  type-aliases-package: com.e419.arma.model

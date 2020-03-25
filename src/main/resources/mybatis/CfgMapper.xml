@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.e419.arma.dao.CfgDao">
+	<select id="getAll" resultType="com.e419.arma.model.Cfg">
+		select 
+		*
+		from 
+		cfg
+		where 
+		id=1
+	</select>
+	
+	<select id="getBasic" resultType="com.e419.arma.model.Basic">
+		select 
+		*
+		from 
+		basic 
+		where 
+		id=1
+	</select>
+	
+	<select id="getSecurityCode" resultType="com.e419.arma.model.Cfg">
+		select 
+		securityCode 
+		from 
+		sequity 
+		where 
+		id=1
+	</select>
+	
+	<select id="getDifficulty" resultType="com.e419.arma.model.Difficulty">
+		select 
+		* 
+		from 
+		difficulty 
+		where 
+		id=1
+	</select>
+	
+	<select id="getParam" resultType="com.e419.arma.model.Param">
+		select 
+		* 
+		from 
+		params 
+		where 
+		id=1
+	</select>
+	
+	<update id="setAll" parameterType="com.e419.arma.model.Cfg">
+		update 
+		cfg 
+		<set>
+			hostName=#{hostName},
+			password=#{password},
+			passwordAdmin=#{passwordAdmin},
+			maxPlayers=#{maxPlayers},
+			persistent=#{persistent},
+			disableVoN=#{disableVoN},
+			vonCodecQuality=#{vonCodecQuality},
+			voteMissionPlayers=#{voteMissionPlayers},
+			voteThreshold=#{voteThreshold},
+			motdInterval=#{motdInterval},
+			template=#{template},
+			difficulty=#{difficulty},
+			timeStampFormat=#{timeStampFormat},
+			logFile=#{logFile},
+			BattlEye=#{BattlEye},
+			verifySignatures=#{verifySignatures},
+			kickDuplicate=#{kickDuplicate},
+			headlessClients1=#{headlessClients1},
+			headlessClients2=#{headlessClients2},
+			headlessClients3=#{headlessClients3},
+			localClient=#{localClient},
+			motd=#{motd},
+			allowedFilePatching=#{allowedFilePatching},
+		</set>
+		where 
+		id=1;
+	</update>
+	
+	<update id="setDifficulty" parameterType="com.e419.arma.model.Difficulty">
+		update 
+		difficulty 
+		<set>
+			reducedDamage=#{reducedDamage},
+			groupIndicators=#{groupIndicators},
+			friendlyTags=#{friendlyTags},
+			enemyTags=#{enemyTags},
+			detectedMines=#{detectedMines},
+			commands=#{commands},
+			waypoints=#{waypoints},
+			tacticalPing=#{tacticalPing},
+			weaponInfo=#{weaponInfo},
+			stanceIndicator=#{stanceIndicator},
+			staminaBar=#{staminaBar},
+			weaponCrosshair=#{weaponCrosshair},
+			visionAid=#{visionAid},
+			thirdPersonView=#{thirdPersonView},
+			cameraShake=#{cameraShake},
+			scoreTable=#{scoreTable},
+			deathMessages=#{deathMessages},
+			vonID=#{vonID},
+			mapContent=#{mapContent},
+			autoReport=#{autoReport},
+			multipleSaves=#{multipleSaves},
+			aiLevelPreset=#{aiLevelPreset},
+			skillAI=#{skillAI},
+			precisionAI=#{precisionAI} 
+		</set>
+		where 
+		id=1;
+	</update>
+	
+	<update id="setBasic" parameterType="com.e419.arma.model.Basic">
+		update 
+		basic 
+		<set>
+			language=#{language},
+			adapter=#{adapter},
+			Performance=#{Performance},
+			Resolution_W=#{Resolution_W},
+			Resolution_H=#{Resolution_H},
+			Resolution_Bpp=#{Resolution_Bpp},
+			MinBandwidth=#{MinBandwidth},
+			MaxBandwidth=#{MaxBandwidth},
+			MaxMsgSend=#{MaxMsgSend},
+			MaxSizeGuaranteed=#{MaxSizeGuaranteed},
+			MaxSizeNonguaranteed=#{MaxSizeNonguaranteed},
+			MinErrorToSend=#{MinErrorToSend},
+			MinErrorToSendNear=#{MinErrorToSendNear},
+			MaxCustomFileSize=#{MaxCustomFileSize}
+		</set>
+		where 
+		id=1;
+	</update>
+	
+	<update id="setParam" parameterType="com.e419.arma.model.Param">
+		update 
+		params 
+		<set>
+			port=#{port},
+			config=#{config},
+			cfg=#{cfg},
+			profiles=#{profiles},
+			name=#{name},
+			filePatching=#{filePatching},
+			autoInit=#{autoInit},
+			ranking=#{ranking},
+			pid=#{pid},
+			mods=#{mods},
+			servermod=#{servermod},			
+			netlog=#{netlog},
+			exe=#{exe}
+		</set>
+		where 
+		id=1;
+	</update>
+</mapper>
