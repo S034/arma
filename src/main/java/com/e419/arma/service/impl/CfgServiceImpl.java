@@ -64,6 +64,10 @@ public class CfgServiceImpl implements CfgService{
 	
 	@Override
 	public void writeCfg() throws IOException{
+		Param param = cfgDao.getParam();
+		String configPath = param.getConfig();
+		String profiles = param.getProfiles();
+		configPath = profiles+"\\"+configPath;
 		Cfg cfg= cfgDao.getAll();
 		String[] requiredLines= {
 				"hostName="+"\""+cfg.getHostName()+"\";",
@@ -89,7 +93,7 @@ public class CfgServiceImpl implements CfgService{
 				"kickDuplicate="+cfg.getKickDuplicate()+";",
 				"allowedFilePatching="+cfg.getAllowedFilePatching()+";"
 		};
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("E:/A3Server.cfg")), "UTF-8"));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(configPath)), "UTF-8"));
 		for(String requiredLine:requiredLines){
 			writer.write(requiredLine+"\t\n");
         }
@@ -125,6 +129,10 @@ public class CfgServiceImpl implements CfgService{
 
 	@Override
 	public void writeDifficulty() throws IOException {
+		Param param=cfgDao.getParam();
+		String difficultyPath=param.getProfiles();
+		String name = param.getName();
+		difficultyPath=difficultyPath+"\\Users\\"+name+"\\"+name+".Arma3Profile";
 		Difficulty difficulty= cfgDao.getDifficulty();
 		String[] requiredLines= {
 				"class DifficultyPresets",
@@ -157,14 +165,14 @@ public class CfgServiceImpl implements CfgService{
 				"    };",
 				"    aiLevelPreset="+difficulty.getAiLevelPreset()+";",
 				"  };",
-				"  class CustomAILevel"+";",
+				"  class CustomAILevel",
 				"  {",
 				"    skillAI="+difficulty.getSkillAI()+";",
 				"    precisionAI="+difficulty.getPrecisionAI()+";",
 				"  };",
 				"};"
 		};
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("E:/A3Server.armaProfile")), "UTF-8"));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(difficultyPath)), "UTF-8"));
 		for(String requiredLine:requiredLines){
 			writer.write(requiredLine+"\t\n");
         }
@@ -174,6 +182,10 @@ public class CfgServiceImpl implements CfgService{
 	@Override
 	public void writeBasic() throws IOException {
 		// TODO Auto-generated method stub
+		Param param=cfgDao.getParam();
+		String basicPath = param.getCfg();
+		String profiles = param.getProfiles();
+		basicPath = profiles+"\\"+basicPath;
 		Basic basic=cfgDao.getBasic();
 		String[] requiredLines= {
 			"language="+"\""+basic.getLanguage()+"\""+";",
@@ -191,7 +203,7 @@ public class CfgServiceImpl implements CfgService{
 			"MinErrorToSendNear="+basic.getMinErrorToSendNear()+";",
 			"MaxCustomFileSize="+basic.getMaxCustomFileSize()+";",
 		};
-		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("E:/basic.cfg")), "UTF-8"));
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(basicPath)), "UTF-8"));
 		for(String requiredLine:requiredLines){
 			writer.write(requiredLine+"\t\n");
         }
@@ -212,18 +224,21 @@ public class CfgServiceImpl implements CfgService{
 	
 	@Override
 	public int startUp() throws IOException {
+		writeCfg();
+		writeDifficulty();
+		writeBasic();
 		Status status=status();
 		if(status.getOnline()!=1) {
 			Param param=cfgDao.getParam();
 			String params="-port="+param.getPort();
-			if(param.getConfig()!=null&&param.getConfig()!=""&&param.getConfig().length()!=0) {
-				params=params+" \"-config="+param.getConfig()+"\"";
-			}
-			if(param.getCfg()!=null&&param.getCfg()!=""&&param.getCfg().length()!=0) {
-				params=params+" \"-cfg="+param.getCfg()+"\"";
-			}
 			if(param.getProfiles()!=null&&param.getProfiles()!=""&&param.getProfiles().length()!=0) {
 				params=params+" \"-profiles="+param.getProfiles()+"\"";
+				if(param.getConfig()!=null&&param.getConfig()!=""&&param.getConfig().length()!=0) {
+					params=params+" \"-config="+param.getProfiles()+"\\"+param.getConfig()+"\"";
+				}
+				if(param.getCfg()!=null&&param.getCfg()!=""&&param.getCfg().length()!=0) {
+					params=params+" \"-cfg="+param.getProfiles()+"\\"+param.getCfg()+"\"";
+				}
 			}
 			if(param.getName()!=null&&param.getName()!="") {
 				params=params+" -name="+param.getName();
