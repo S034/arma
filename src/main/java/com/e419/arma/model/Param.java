@@ -14,7 +14,7 @@ public class Param {
 	private String pid;
 	private String mods;
 	private String servermod;
-	private String exe;
+	private String modPath;
 	public String getSecurityCode() {
 		return securityCode;
 	}
@@ -93,10 +93,10 @@ public class Param {
 	public void setServermod(String servermod) {
 		this.servermod = servermod;
 	}
-	public String getExe() {
-		return exe;
+	public String getModPath() {
+		return modPath;
 	}
-	public void setExe(String exe) {
-		this.exe = exe;
+	public void setModPath(String modPath) {
+		this.modPath = modPath;
 	}
 }
