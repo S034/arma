@@ -1,6 +1,7 @@
 # Arma3 Windows server Easy RC
 欢迎来到Arma3 Windows-server 远程简易管理项目，本项目主要目的是通过提供web API，免去使用第一方或者第三方远程桌面工具的繁琐步骤。
 同时也解决了Arma3服务端启动器大多不适应当前版本的问题。
+本项目额外支持对extDB3的查询
 使用须知：
   1.本项使用SpringBoot+mybatis，数据库建议使用mysql。
   2.本项目仅提供API而未提供用户界面，用户界面将在另一项目中发布，API文档在/doc目录下已给出
