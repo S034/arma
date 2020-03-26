@@ -1,4 +1,4 @@
-# arma
+# Arma3 Windows server Easy RC
 欢迎来到Arma3 Windows-server 远程简易管理项目，本项目主要目的是通过提供web API，免去使用第一方或者第三方远程桌面工具的繁琐步骤。
 同时也解决了Arma3服务端启动器大多不适应当前版本的问题。
 使用须知：
